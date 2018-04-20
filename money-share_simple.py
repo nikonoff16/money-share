@@ -1,5 +1,8 @@
 # python3
 # -*- coding: utf-8 -*-
+from termcolor import *
+import colorama
+colorama.init()
 
 # Создаем базовые переменные (потом можно и их создавать из ввода)
 francev = 0
@@ -38,9 +41,11 @@ debt_list['gorlov'] = gorlov
 debt_list['krygin'] = krygin
 debt_list['osipov'] = osipov
 # Показываем общую задолженность
-print('Сумма общий трат равна ' + str(summ) + ' ₽\n')
+print('Сумма общих трат равна ' + str(summ) + ' ₽\n')
 name = -1
 for key in debt_list:
     name += 1
     if debt_list[key] > 0:
-        print(names[name] + " должен " + str(debt_list[key]) + " ₽")
+        cprint(names[name] + " должен " + str(debt_list[key]) + " ₽", 'yellow')
+    else:
+        cprint(names[name] + ": ему должны " + str(-(debt_list[key])) + " ₽", 'green')
