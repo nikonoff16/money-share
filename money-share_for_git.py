@@ -41,7 +41,7 @@ debt_list['gorlov'] = gorlov
 debt_list['krygin'] = krygin
 debt_list['osipov'] = osipov
 # Показываем общую задолженность
-print('Сумма общих трат равна ' + str(summ) + ' ₽\n')
+cprint('Сумма общих трат равна ' + str(summ) + ' ₽\n', 'red')
 name = -1
 for key in debt_list:
     name += 1
