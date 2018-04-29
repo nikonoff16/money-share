@@ -46,6 +46,6 @@ name = -1
 for key in debt_list:
     name += 1
     if debt_list[key] > 0:
-        cprint(names[name] + " должен " + str(debt_list[key]) + " ₽", 'yellow')
+        cprint(names[name] + " должен " + str(debt_list[key]) + " ₽", 'red')
     else:
         cprint(names[name] + ": ему должны " + str(-(debt_list[key])) + " ₽", 'green')
