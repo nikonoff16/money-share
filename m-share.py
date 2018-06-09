@@ -2,22 +2,38 @@
 #! /usr/bin/python3
 # -*- coding: utf-8 -*-
 
-'''
-Первая часть планированных изменений сделана. Далее нужно:
-- Добавить вывод из файла и считывание из него (именно в такой последовательности).
-- Результаты считывания из файла должны отобразиться на экране вместе с датой последнего изменения. 
-- Возможность полного выпиливания людей из списка
 
 '''
+В этой версии:
+- Появилась запись результатов в файл.
+- Каждая запись сопровождается временем своего создания.
 
+Очередная  часть планированных изменений сделана. Далее нужно:
+- Добавить возможность считывания результатов из предыдущего исчисления (безумная идея, но может выйдет)
+- Разбить файл на отдельные модули, для удобства чтения.
+
+
+'''
+import os
+import time
 from termcolor import *
 import colorama
 colorama.init()
+
+def exists(path):
+    ''' Спасибо ребятам с русского Stackoverfow за этот кусок кода
+        https://ru.stackoverflow.com/questions/414593/Как-проверить-существование-файла'''
+    try:
+        os.stat(path)
+    except OSError:
+        return False
+    return True
 
 '''
 Эта функция создает словарь участников группы, присваивая каждому нулевое значение.
 Она используется в collect_payments.
 '''
+
 
 def input_names():
     ''' Создает словарь из введенных пользователем имен'''
@@ -114,8 +130,22 @@ def count_payments(list):
 
 final_dict, summ = collect_payments()
 
+try:
+    file = open('count_database.txt', 'a', encoding='utf-8')
+except IOError as e:
+    print('Файл записи отсутствует, создаю новый... ')
+    file = open('count_database.txt', 'a', encoding='utf-8')
+    file.write('''
+    MIT License Copyright (c) 2018 Victor Osipov
+    Welcome on a new session of MONEY-SHARE programm!
+    ''')
+''' Создаем обрамление записи'''
+file.write('\n\n')
+file.write(time.ctime(time.time()))
+file.write('\n')
+file.write('\n')
 
-
+# Собственно последний блок программы. Результаты выводятся как в файл, так и на экран.
 name = -1
 names = [*final_dict]
 print('Общая сумма трат равна: ' + str(summ) + " ₽\n")
@@ -123,7 +153,14 @@ for key in final_dict:
     name += 1
     if final_dict[key] < 0:
         cprint(names[name] + ": должен (должна) " + str(-(round(final_dict[key], 2))) + " ₽", 'yellow')
+        file.write(names[name] + ": должен (должна) " + str(-(round(final_dict[key], 2))) + " ₽\n")
     elif final_dict[key] == 0:
         print(names[name] + ': ничего не должен(не должна)')
+        file.write(names[name] + ': ничего не должен(не должна)\n')
     else:
         cprint(names[name] + ": ему (ей) должны " + str((round(final_dict[key], 2))) + " ₽", 'green')
+        file.write(names[name] + ": ему (ей) должны " + str((round(final_dict[key], 2))) + " ₽\n")
+
+
+file.write('-' * 45)
+file.close()
