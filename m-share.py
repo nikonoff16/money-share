@@ -5,8 +5,10 @@
 
 '''
 В этой версии:
-- Появилась запись результатов в файл.
-- Каждая запись сопровождается временем своего создания.
+- При создании новой копии файла производится приветственная запись и упоминание о лицензировании приложения.
+- Исправлены ошибки в коде
+- Код очищен от ненужных комментариев и нерабочих функций
+
 
 Очередная  часть планированных изменений сделана. Далее нужно:
 - Добавить возможность считывания результатов из предыдущего исчисления (безумная идея, но может выйдет)
@@ -14,29 +16,17 @@
 
 
 '''
-import os
+
 import time
 from termcolor import *
 import colorama
 colorama.init()
 
-def exists(path):
-    ''' Спасибо ребятам с русского Stackoverfow за этот кусок кода
-        https://ru.stackoverflow.com/questions/414593/Как-проверить-существование-файла'''
-    try:
-        os.stat(path)
-    except OSError:
-        return False
-    return True
-
 '''
 Эта функция создает словарь участников группы, присваивая каждому нулевое значение.
 Она используется в collect_payments.
 '''
-
-
 def input_names():
-    ''' Создает словарь из введенных пользователем имен'''
     names_list = []
     while True:
         name = input("Введите имя участника: ")
@@ -48,6 +38,8 @@ def input_names():
             break
     names_list = dict.fromkeys(names_list, 0)
     return names_list
+
+
 '''
 Это центральная функция в скрипте. Ее вызов запускает его, и в нем используются остальные функции. 
 Независим от него только вывод информации на экран. 
@@ -64,12 +56,6 @@ def collect_payments():
     summ = 0
     while True:
         "Первый цикл, собирающий информацию и контролирующий ввод."
-#         print('''\nВведите информацию о платежах в численном формате. Можно ввести все данные за один подход
-# (может так проще будет), или за несколько, в соответствии с событиями, записями или сериями чеков
-# что иногда очень удобно, особенно если на некоторых этапах кто-то за что-то отказался платить).
-# ЕСЛИ НУЖНО УКАЗАТЬ, ЧТО ЧЕЛОВЕК В ДАННОМ СЛУЧАЕ НЕ УЧАСТВУЕТ В РАЗДЕЛЕ ДЕНЕГ, В ЕГО ГРАФЕ НУЖНО
-# ВВЕСТИ СИМВОЛ МИНУСА "-" (БЕЗ ВСЯКИХ КАВЫЧЕК И ПРОБЕЛОВ). Скрипт прогинорирует его в рассчетах
-# на этот проход, сохранив его предыдущие данные. ''')
         for name in payment_list:
             print(name, end=' ')
             payment_list[name] = input('внес(ла): ')
@@ -130,15 +116,14 @@ def count_payments(list):
 
 final_dict, summ = collect_payments()
 
-try:
-    file = open('count_database.txt', 'a', encoding='utf-8')
-except IOError as e:
-    print('Файл записи отсутствует, создаю новый... ')
-    file = open('count_database.txt', 'a', encoding='utf-8')
+
+file = open('count_database.txt', 'r+', encoding='utf-8')
+if file.read() == '':
     file.write('''
-    MIT License Copyright (c) 2018 Victor Osipov
-    Welcome on a new session of MONEY-SHARE programm!
-    ''')
+MIT License Copyright (c) 2018 Victor Osipov
+Welcome on a new session of MONEY-SHARE App!
+            ''')
+
 ''' Создаем обрамление записи'''
 file.write('\n\n')
 file.write(time.ctime(time.time()))

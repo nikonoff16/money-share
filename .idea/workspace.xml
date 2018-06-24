@@ -4,6 +4,7 @@
     <list default="true" id="3a0bfda1-f549-4992-9a8c-8c851ffbe2b2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/count_database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/count_database.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/m-share.py" beforeDir="false" afterPath="$PROJECT_DIR$/m-share.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,10 +30,10 @@
       <file leaf-file-name="m-share.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/m-share.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1960">
-              <caret line="140" column="4" selection-start-line="140" selection-start-column="4" selection-end-line="140" selection-end-column="4" />
+            <state relative-caret-position="-420">
+              <caret line="57" column="67" selection-start-line="57" selection-start-column="67" selection-end-line="57" selection-end-column="67" />
               <folding>
-                <marker date="1527573413026" expanded="true" signature="483:746" ph="..." />
+                <element signature="e#505#516#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -40,7 +41,11 @@
       </file>
       <file leaf-file-name="count_database.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/count_database.txt">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="10" column="45" lean-forward="true" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -54,11 +59,17 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/m-share.py" />
+        <option value="$PROJECT_DIR$/count_database.txt" />
       </list>
     </option>
   </component>
@@ -163,23 +174,30 @@
       <option name="project" value="LOCAL" />
       <updated>1525357429702</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Start new branch to fix wrong output issue">
+      <created>1529850222539</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1529850222539</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32985657" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32985657" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32985657" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39895698" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -194,7 +212,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Just starting to use PyCharm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Just starting to use PyCharm" />
+    <MESSAGE value="Start new branch to fix wrong output issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Start new branch to fix wrong output issue" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -217,7 +236,27 @@
         <state relative-caret-position="2740">
           <caret line="140" column="4" selection-start-line="140" selection-start-column="4" selection-end-line="140" selection-end-column="4" />
           <folding>
-            <marker date="1527573413026" expanded="true" signature="483:746" ph="..." />
+            <element signature="e#505#516#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/money-share_func.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" selection-start-line="3" selection-end-line="5" selection-end-column="15" />
+          <folding>
+            <element signature="e#35#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/m-share.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2740">
+          <caret line="140" column="4" selection-start-line="140" selection-start-column="4" selection-end-line="140" selection-end-column="4" />
+          <folding>
+            <element signature="e#505#516#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -237,7 +276,7 @@
         <state relative-caret-position="140">
           <caret line="7" column="99" selection-start-line="7" selection-start-column="99" selection-end-line="7" selection-end-column="99" />
           <folding>
-            <marker date="1527573413026" expanded="true" signature="483:746" ph="..." />
+            <element signature="e#505#516#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -288,16 +327,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/m-share.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1960">
-          <caret line="140" column="4" selection-start-line="140" selection-start-column="4" selection-end-line="140" selection-end-column="4" />
+        <state relative-caret-position="-420">
+          <caret line="57" column="67" selection-start-line="57" selection-start-column="67" selection-end-line="57" selection-end-column="67" />
           <folding>
-            <marker date="1527573413026" expanded="true" signature="483:746" ph="..." />
+            <element signature="e#505#516#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/count_database.txt">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="45" lean-forward="true" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
