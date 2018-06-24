@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3a0bfda1-f549-4992-9a8c-8c851ffbe2b2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/m-share.py" beforeDir="false" afterPath="$PROJECT_DIR$/m-share.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/count_database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/count_database.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,18 +26,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="m-share.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="m-share.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/m-share.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
+            <state relative-caret-position="1960">
               <caret line="140" column="4" selection-start-line="140" selection-start-column="4" selection-end-line="140" selection-end-column="4" />
               <folding>
-                <element signature="e#359#368#0" expanded="true" />
-                <element signature="e#452#535#0" />
                 <marker date="1527573413026" expanded="true" signature="483:746" ph="..." />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="count_database.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/count_database.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -211,11 +214,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/m-share.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2740">
+          <caret line="140" column="4" selection-start-line="140" selection-start-column="4" selection-end-line="140" selection-end-column="4" />
+          <folding>
+            <marker date="1527573413026" expanded="true" signature="483:746" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/money-share_func.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" selection-start-line="3" selection-end-line="5" selection-end-column="15" />
+          <folding>
+            <element signature="e#35#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/m-share.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="7" column="99" selection-start-line="7" selection-start-column="99" selection-end-line="7" selection-end-column="99" />
           <folding>
-            <element signature="e#359#368#0" expanded="true" />
-            <element signature="e#452#535#0" />
             <marker date="1527573413026" expanded="true" signature="483:746" ph="..." />
           </folding>
         </state>
@@ -267,15 +288,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/m-share.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
+        <state relative-caret-position="1960">
           <caret line="140" column="4" selection-start-line="140" selection-start-column="4" selection-end-line="140" selection-end-column="4" />
           <folding>
-            <element signature="e#359#368#0" expanded="true" />
-            <element signature="e#452#535#0" />
             <marker date="1527573413026" expanded="true" signature="483:746" ph="..." />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/count_database.txt">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
