@@ -4,15 +4,21 @@
 
 
 """
-В этой версии:
-- При создании новой копии файла производится приветственная запись и упоминание о лицензировании приложения.
-- Исправлены ошибки в коде
-- Код очищен от ненужных комментариев и нерабочих функций
+07/03/2018
+In this version:
+- All comments were translated in English
+- When a new log file created, it now starts with welcome string.
+- Some bugs checked
+- The code was cleaned from irrelevant comments
 
 
-Очередная  часть планированных изменений сделана. Далее нужно:
-- Добавить возможность считывания результатов из предыдущего исчисления (безумная идея, но может выйдет)
-- Разбить файл на отдельные модули, для удобства чтения.
+Now I satisfied with the script, and I'm not going to maintain it yet.
+There is a plenty ways to perform such simple calculations as these.
+Obviously, you can take any office spreadsheet app for it. =)
+
+Because I live in Russia and speak Russian, and (the most important) first users of the script were russians
+I made all the program output in Russian, except time, date and welcome string.
+
 
 
 """
@@ -24,8 +30,8 @@ import colorama
 colorama.init()
 
 '''
-Эта функция создает словарь участников группы, присваивая каждому нулевое значение.
-Она используется в collect_payments.
+Here we request and collect from input some names. 
+It's used in collect_payments function.
 '''
 
 
@@ -45,53 +51,48 @@ def input_names():
 
 
 '''
-Это центральная функция в скрипте. Ее вызов запускает его, и в нем используются остальные функции. 
-Независим от него только вывод информации на экран. 
+
+As it's shown in function's name, this algorithm collect payments information. 
+I love it most.
+ 
 '''
 
 
 def collect_payments():
-    """ Собирает информацию о платежах каждого члена группы """
     payment_list = input_names()
-    """ Два словаря создаются для того, чтобы словарь в циклах не перегружать ненужными операциями. 
-    После завершения циклов значения внутреннего словаря аугменитурются по ключам к внешнему, final_dictionary. 
-    Во время прохождения нового цикла старые значения внутреннего словаря затираются новыми, 
-    и конфликтов не возникает """
-    final_list = dict.fromkeys([*payment_list], 0)  # Создал отдельный словарь, чтобы не использовать
-    # print(final_list)                             # одинаковые ячейки памяти (это было проблемой, пока не решил
-    # прочие проблемы этого куска кода.
+    """ Two dictionary were created to not overload main function loop. """
+    final_list = dict.fromkeys([*payment_list], 0)
     summ = 0
     while True:
-        "Первый цикл, собирающий информацию и контролирующий ввод."
+        "This loop collects correct input from user"
         for imya in payment_list:
             print(imya, end=' ')
             payment_list[imya] = input("внес(ла): ")
-            ''' Здесь скрипт контролирует ввод. По знаку "-" в обрабатываемый ключ словаря записывается значение
-            None, которое служит триггером для исключения значения в последующих операциях. '''
+            ''' This is a feature that allows user to exclude someone from counting for a time.
+             This may be useful if some of the group would not share in some kind of traits (like alcohol), 
+             but still share with community in other payments. '''
             if payment_list[imya] == '-':
                 payment_list[imya] = None
             else:
-                ''' Не допускаем пользователю ввести неправильные символы (пока не все тесты на дурака провел еще)'''
+                ''' Here we stop user from input mistake'''
                 try:
                     payment_list[imya] = float(payment_list[imya])
                 except ValueError:
                     while True:
                         payment_list[imya] = input('Введите данные в численном формате: ')
-                        if payment_list[imya].isdigit():  # PyCharm подчеркивает здесь .isdigit как неверно
-                            # поставленный элемент. Но он не прав здесь.
-                            # Все хорошо работает, без ошибок.
+                        if payment_list[imya].isdigit():  # I don't know why my PyCharm trying to correct me
+                            # The code here works fine
+                            # But I didn't catch why it's happening :(
                             payment_list[imya] = float(payment_list[imya])
                             break
-        ''' Между циклами применяем функцию рассчета и распределения денег к сформированному нами словарю'''
+        ''' Between loops here we use count_payments func to calculate and distribute money.'''
         payment_list, msumm = (count_payments(payment_list))
         summ += msumm
-        ''' Второй цикл конкатенирует значения словарей, учитывая триггеры None. Поскольку в финальном словаре таких 
-        записей нет, на месте пропусков там либо остается ноль, либо прежнее значение.'''
+        ''' This loop concatenate data from a session to the final list'''
         for member in final_list:
             if payment_list[member] is None:
                 continue
             final_list[member] += payment_list[member]
-            # print(final_list, payment_list)
         check = input("\nЕсли имеются еще неучтенные платежи, введите \"да\" "
                       "\n(в случае их отсутствия просто нажмите Enter):\n")
         if check == '':
@@ -99,13 +100,11 @@ def collect_payments():
     return final_list, summ
 
 
-""" Цикл рассчетов - пока самая любимая часть кода в скрипте. Он рассчитывает количетсво участников, определяет 
-общую сумму и среднее значение траты на включенного участника, и производит расчет для каждого из этих участников,
-сохраняя его в исходном списке. """
+""" I love this piece of code. Other code is made to serve this func. """
 
 
 def count_payments(lst):
-    number_of_members = len([*lst])  # это почти персональное изобретение (в том плане, что сам подобрал этот способ)))
+    number_of_members = len([*lst])  # That's my personal device! Because I didn't see such things before I write it.
     payments_sum = 0
     for member in lst:
         if lst[member] is None:
@@ -113,11 +112,9 @@ def count_payments(lst):
     for number in lst.values():
         if number is None:
             continue
-        payments_sum += number  #
-    # cprint("Общая сумма потрат на данном этапе равна " + str(number_summ) + '₽\n', 'red')
+        payments_sum += number
     middle_number = payments_sum / number_of_members
-    for debt in lst:  # Высчитываем потраты каждого члена группы.
-        # Положительный баланс - должны ему, отрицательный - должен он.
+    for debt in lst:
         if lst[debt] is None:
             continue
         lst[debt] = lst[debt] - middle_number
@@ -133,13 +130,14 @@ MIT License Copyright (c) 2018 Victor Osipov
 Welcome on a new session of MONEY-SHARE App!
             ''')
 
-''' Создаем обрамление записи'''
+''' Here we create visual frame for the script session'''
 file.write('\n\n')
 file.write(time.ctime(time.time()))
 file.write('\n')
 file.write('\n')
 
-# Собственно последний блок программы. Результаты выводятся как в файл, так и на экран.
+# The last part of the script
+
 name = -1
 names = [*final_dict]
 print('Общая сумма трат равна: ' + str(summ) + " ₽\n")
