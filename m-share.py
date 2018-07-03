@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 
-'''
+"""
 В этой версии:
 - При создании новой копии файла производится приветственная запись и упоминание о лицензировании приложения.
 - Исправлены ошибки в коде
@@ -15,26 +15,30 @@
 - Разбить файл на отдельные модули, для удобства чтения.
 
 
-'''
+"""
 
 import time
 from termcolor import *
 import colorama
+
 colorama.init()
 
 '''
 Эта функция создает словарь участников группы, присваивая каждому нулевое значение.
 Она используется в collect_payments.
 '''
+
+
 def input_names():
     names_list = []
     while True:
-        name = input("Введите имя участника: ")
-        if name != '':
-            names_list.append(name)
+        imya = input("Введите имя участника: ")
+        if imya != '':
+            names_list.append(imya)
         else:
             print('\nВвод участников завершен, приступаем к занесению информации о платежах... \n')
-            print('Для пропуска участника в конкретном распределении введите в его поле "-" (знак минус без кавычек).\n')
+            print(
+                'Для пропуска участника в конкретном распределении введите в его поле "-" (знак минус без кавычек).\n')
             break
     names_list = dict.fromkeys(names_list, 0)
     return names_list
@@ -44,48 +48,52 @@ def input_names():
 Это центральная функция в скрипте. Ее вызов запускает его, и в нем используются остальные функции. 
 Независим от него только вывод информации на экран. 
 '''
+
+
 def collect_payments():
-    ''' Собирает информацию о платежах каждого члена группы '''
+    """ Собирает информацию о платежах каждого члена группы """
     payment_list = input_names()
     """ Два словаря создаются для того, чтобы словарь в циклах не перегружать ненужными операциями. 
     После завершения циклов значения внутреннего словаря аугменитурются по ключам к внешнему, final_dictionary. 
-    Во время прохождения нового цикла старые значения внутреннего словаря затираются новыми, и конфликтов не возникает"""
-    final_list = dict.fromkeys([*payment_list], 0) # Создал отдельный словарь, чтобы не использовать
-    #print(final_list)                             # одинаковые ячейки памяти (это было проблемой, пока не решил
-                                                   # прочие проблемы этого куска кода.
+    Во время прохождения нового цикла старые значения внутреннего словаря затираются новыми, 
+    и конфликтов не возникает """
+    final_list = dict.fromkeys([*payment_list], 0)  # Создал отдельный словарь, чтобы не использовать
+    # print(final_list)                             # одинаковые ячейки памяти (это было проблемой, пока не решил
+    # прочие проблемы этого куска кода.
     summ = 0
     while True:
         "Первый цикл, собирающий информацию и контролирующий ввод."
-        for name in payment_list:
-            print(name, end=' ')
-            payment_list[name] = input('внес(ла): ')
+        for imya in payment_list:
+            print(imya, end=' ')
+            payment_list[imya] = input("внес(ла): ")
             ''' Здесь скрипт контролирует ввод. По знаку "-" в обрабатываемый ключ словаря записывается значение
             None, которое служит триггером для исключения значения в последующих операциях. '''
-            if payment_list[name] == '-':
-                payment_list[name] = None
+            if payment_list[imya] == '-':
+                payment_list[imya] = None
             else:
                 ''' Не допускаем пользователю ввести неправильные символы (пока не все тесты на дурака провел еще)'''
                 try:
-                    payment_list[name] = float(payment_list[name])
+                    payment_list[imya] = float(payment_list[imya])
                 except ValueError:
                     while True:
-                        payment_list[name] = input('Введите данные в численном формате: ')
-                        if payment_list[name].isdigit() == True: # PyCharm подчеркивает здесь .isdigit как неверно
-                                                                 # поставленный элемент. Но он не прав здесь.
-                                                                 # Все хорошо работает, без ошибок.
-                            payment_list[name] = float(payment_list[name])
+                        payment_list[imya] = input('Введите данные в численном формате: ')
+                        if payment_list[imya].isdigit():  # PyCharm подчеркивает здесь .isdigit как неверно
+                            # поставленный элемент. Но он не прав здесь.
+                            # Все хорошо работает, без ошибок.
+                            payment_list[imya] = float(payment_list[imya])
                             break
         ''' Между циклами применяем функцию рассчета и распределения денег к сформированному нами словарю'''
         payment_list, msumm = (count_payments(payment_list))
-        summ +=msumm
+        summ += msumm
         ''' Второй цикл конкатенирует значения словарей, учитывая триггеры None. Поскольку в финальном словаре таких 
         записей нет, на месте пропусков там либо остается ноль, либо прежнее значение.'''
         for member in final_list:
-            if payment_list[member] == None:
+            if payment_list[member] is None:
                 continue
             final_list[member] += payment_list[member]
             # print(final_list, payment_list)
-        check = input('\nЕсли имеются еще неучтенные платежи, введите "да" \n(в случае их отсутствия просто нажмите Enter):\n')
+        check = input("\nЕсли имеются еще неучтенные платежи, введите \"да\" "
+                      "\n(в случае их отсутствия просто нажмите Enter):\n")
         if check == '':
             break
     return final_list, summ
@@ -95,27 +103,28 @@ def collect_payments():
 общую сумму и среднее значение траты на включенного участника, и производит расчет для каждого из этих участников,
 сохраняя его в исходном списке. """
 
-def count_payments(list):
-    number_of_members = len([*list]) # это почти персональное изобретение (в том плане, что сам подобрал этот способ)))
-    payments_summ = 0
-    for member in list:
-        if list[member] == None:
+
+def count_payments(lst):
+    number_of_members = len([*lst])  # это почти персональное изобретение (в том плане, что сам подобрал этот способ)))
+    payments_sum = 0
+    for member in lst:
+        if lst[member] is None:
             number_of_members -= 1
-    for number in list.values():
-        if number == None:
+    for number in lst.values():
+        if number is None:
             continue
-        payments_summ += number #
+        payments_sum += number  #
     # cprint("Общая сумма потрат на данном этапе равна " + str(number_summ) + '₽\n', 'red')
-    middle_number = payments_summ / number_of_members
-    for debt in list: # Высчитываем потраты каждого члена группы. Положительный баланс - должны ему, отрицательный - должен он.
-        if list[debt] == None:
+    middle_number = payments_sum / number_of_members
+    for debt in lst:  # Высчитываем потраты каждого члена группы.
+        # Положительный баланс - должны ему, отрицательный - должен он.
+        if lst[debt] is None:
             continue
-        list[debt] = list[debt] - middle_number
-    return list, payments_summ
+        lst[debt] = lst[debt] - middle_number
+    return lst, payments_sum
 
 
 final_dict, summ = collect_payments()
-
 
 file = open('count_database.txt', 'r+', encoding='utf-8')
 if file.read() == '':
@@ -145,7 +154,6 @@ for key in final_dict:
     else:
         cprint(names[name] + ": ему (ей) должны " + str((round(final_dict[key], 2))) + " ₽", 'green')
         file.write(names[name] + ": ему (ей) должны " + str((round(final_dict[key], 2))) + " ₽\n")
-
 
 file.write('-' * 45)
 file.close()
